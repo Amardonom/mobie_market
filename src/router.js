@@ -1,25 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-
 Vue.use(Router)
+
+// 首页 这种写法是当children子路由深入到三层之后 简单写法不能用 拿这个
+// vue很多数据当三层之后就会默认不刷新 是个bug
+const Home = (resolve) => {
+  import('@/views/Home/Home.vue').then((module) => {
+    resolve(module)
+  })
+}
 
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
+    { path: '/', component: Home }
   ]
 })
