@@ -24,7 +24,7 @@
         <div style="margin-top:8px;color:grey;">{{item.mallCategoryName}}</div>
       </div>
     </div>
-    <div class="advertes-picture">
+    <div style="" class="advertes-picture">
       <img :src="pageInfo.advertesPicture.PICTURE_ADDRESS" alt="">
     </div>
   </div>
