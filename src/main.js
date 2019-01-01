@@ -2,10 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Button, Row, Col } from 'vant'
+import Vant from 'vant'
+import 'vant/lib/index.css'
 import './stylus/index.styl'
 import './stylus/public.styl'
-Vue.use(Button, Row, Col)
+Vue.use(Vant)
 
 Vue.config.productionTip = false
 
