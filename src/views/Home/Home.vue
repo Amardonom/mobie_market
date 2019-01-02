@@ -29,13 +29,30 @@
     </div>
     <div class="recommend-area">
       <div class="recommend-title">商品推荐</div>
-      <div class="recommend-content"></div>
+      <div class="recommend-content" style="border-bottom:1px solid #eee;">
+        <swiper class="flex-start" :options="swiperOption">
+          <swiper-slide class="swiper-slide" v-for=" (item ,index) in pageInfo.recommend" :key="index">
+              <div class="recommend-item">
+                <img :src="item.image" width="80%" />
+                <!-- <div>{{item.goodsName}}</div> -->
+                <div>￥{{item.price}}</div>
+                <div class="mall-price">￥{{item.mallPrice}}</div>
+              </div>
+          </swiper-slide>
+      </swiper>
+      </div>
     </div>
   </div>
 </template>
 <script>
+import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import { getHomeInfo } from '@/api/api.js'
 export default {
+  components: {
+    swiper,
+    swiperSlide
+  },
   data () {
     return {
       pageInfo: {}
@@ -52,7 +69,25 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/stylus/public.styl'
-  
+  .swiper-slide
+    flex 0 0 33.333%
+    .recommend-item
+      height 380*$vw
+      border-right 1px solid #eeeeee
+      color grey
+      font-size 16px
+      text-align center
+      div
+        margin-top 4px
+      .mall-price
+        font-size 12px
+        color #d9d6c3
+        text-decoration line-through
+        // &:after
+        //   content:'-'
+        //   width 10px
+        //   height 2px
+        //   background red
   .page-content
     background $pagebgcolor
     height 100vh
@@ -60,8 +95,8 @@ export default {
   .recommend-area
     background #fff
     .recommend-title
-      height 90*$vw
-      line-height 90*$vw
+      height 70*$vw
+      line-height 70*$vw
       padding-left 6*$vw
       color orange
       font-size 26*$vw
