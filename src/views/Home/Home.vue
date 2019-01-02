@@ -2,7 +2,7 @@
   <div class="page-content">
     <div class="search-header flex-start">
       <div class="flex-center">
-        <img src="../../assets/position.png"/>
+        <img style="width:70%;" src="../../assets/position.png"/>
       </div>
       <div>
         <input placeholder="查找" class="search-input"/>
@@ -24,8 +24,12 @@
         <div style="margin-top:8px;color:grey;">{{item.mallCategoryName}}</div>
       </div>
     </div>
-    <div style="" class="advertes-picture">
-      <img :src="pageInfo.advertesPicture.PICTURE_ADDRESS" alt="">
+    <div style="padding-bottom:3vw;" class="advertes-picture">
+      <img style="width:100vw;" :src="pageInfo.advertesPicture.PICTURE_ADDRESS" alt="">
+    </div>
+    <div class="recommend-area">
+      <div class="recommend-title">商品推荐</div>
+      <div class="recommend-content"></div>
     </div>
   </div>
 </template>
@@ -48,10 +52,19 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/stylus/public.styl'
+  
   .page-content
     background $pagebgcolor
     height 100vh
     font-size 18*$vw
+  .recommend-area
+    background #fff
+    .recommend-title
+      height 90*$vw
+      line-height 90*$vw
+      padding-left 6*$vw
+      color orange
+      font-size 26*$vw
   .category
     height 170*$vw
     background #fff
