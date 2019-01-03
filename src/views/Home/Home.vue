@@ -25,12 +25,12 @@
       </div>
     </div>
     <div style="padding-bottom:3vw;" class="advertes-picture">
-      <img style="width:100vw;" :src="pageInfo.advertesPicture.PICTURE_ADDRESS" alt="">
+      <img style="width:100vw;" :src="gifSrc" alt="">
     </div>
     <div class="recommend-area">
       <div class="recommend-title">商品推荐</div>
       <div class="recommend-content" style="border-bottom:1px solid #eee;">
-        <swiper class="flex-start" :options="swiperOption">
+        <swiper class="flex-start">
           <swiper-slide class="swiper-slide" v-for=" (item ,index) in pageInfo.recommend" :key="index">
               <div class="recommend-item">
                 <img :src="item.image" width="80%" />
@@ -42,26 +42,42 @@
       </swiper>
       </div>
     </div>
+    <div class="floor-content">
+      <div class="recommend-title-floor">坚果零食</div>
+      <floor :imgList="pageInfo.floor1"></floor>
+      <div class="recommend-title-floor">新鲜水果</div>
+      <floor :imgList="pageInfo.floor2"></floor>
+      <div class="recommend-title-floor">新鲜牛奶</div>
+      <floor :imgList="pageInfo.floor3"></floor>
+    </div>
   </div>
 </template>
 <script>
+import floor from './component/floor.vue'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import { getHomeInfo } from '@/api/api.js'
 export default {
   components: {
     swiper,
-    swiperSlide
+    swiperSlide,
+    floor
   },
   data () {
     return {
-      pageInfo: {}
+      pageInfo: {
+        floor1: [],
+        floor2: [],
+        floor3: []
+      },
+      gifSrc: ''
     }
   },
   created () {
     getHomeInfo().then(res => {
       const _self = this
       _self.pageInfo = res.data.data
+      _self.gifSrc = _self.pageInfo.advertesPicture.PICTURE_ADDRESS
     })
   }
 }
@@ -69,6 +85,20 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/stylus/public.styl'
+  .recommend-title-floor
+    height 70*$vw
+    line-height 70*$vw
+    text-align center
+    color grey
+    font-size 26*$vw
+    background #eee
+  .recommend-title
+    height 70*$vw
+    line-height 70*$vw
+    padding-left 6*$vw
+    color orange
+    font-size 26*$vw
+    background #fff
   .swiper-slide
     flex 0 0 33.333%
     .recommend-item
@@ -94,12 +124,6 @@ export default {
     font-size 18*$vw
   .recommend-area
     background #fff
-    .recommend-title
-      height 70*$vw
-      line-height 70*$vw
-      padding-left 6*$vw
-      color orange
-      font-size 26*$vw
   .category
     height 170*$vw
     background #fff
