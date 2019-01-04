@@ -34,7 +34,6 @@
           <swiper-slide class="swiper-slide" v-for=" (item ,index) in pageInfo.recommend" :key="index">
               <div class="recommend-item">
                 <img :src="item.image" width="80%" />
-                <!-- <div>{{item.goodsName}}</div> -->
                 <div>￥{{item.price}}</div>
                 <div class="mall-price">￥{{item.mallPrice}}</div>
               </div>
@@ -50,10 +49,17 @@
       <div class="recommend-title-floor">新鲜牛奶</div>
       <floor :imgList="pageInfo.floor3"></floor>
     </div>
+    <div class="hot-area">
+      <div class="recommend-title-floor">热卖商品</div>
+      <div class="hot-goods">
+        <hot :pageList = pageInfo.hotGoods></hot>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import floor from './component/floor.vue'
+import hot from '@/components/hot.vue'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import { getHomeInfo } from '@/api/api.js'
@@ -61,7 +67,8 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    floor
+    floor,
+    hot
   },
   data () {
     return {
@@ -85,6 +92,17 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/stylus/public.styl'
+  .goods-name{
+    padding 0 8px;
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap 
+    color grey
+  }
+  .goods-price{
+    text-align center
+    color grey
+  }
   .recommend-title-floor
     height 70*$vw
     line-height 70*$vw
@@ -148,6 +166,9 @@ export default {
       border none 
       border-bottom 1px solid #fff
       padding: 7*$vw
+      height 70*$vw
+      line-height 70*$vw
+      box-sizing border-box
     .search-btn
       width 130*$vw
       height 58*$vw
