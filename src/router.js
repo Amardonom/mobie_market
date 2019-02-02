@@ -14,6 +14,10 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    { path: '/', component: Home }
+    { path: '/', component: Home },
+    {
+      path: '/registry',
+      component: () => import('./views/Registry/registry.vue')
+    },
   ]
 })
