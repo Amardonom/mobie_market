@@ -19,5 +19,9 @@ export default new Router({
       path: '/registry',
       component: () => import('./views/Registry/registry.vue')
     },
+    {
+      path: '/login',
+      component: () => import('./views/Login/login.vue')
+    },
   ]
 })
