@@ -10,6 +10,25 @@ export function registry (data) {
     return _request('http://localhost:3000/user/registry', 'post', data)
 }
 
+// 商品相详情
+export function getGoodDetail (data) {
+    return _request('http://localhost:3000/goods/getGoodDetail', 'post', data)
+}
+
+// 大类列表
+export function getCatagoryList(){
+    return _request('http://localhost:3000/goods/getCatagoryList', 'get')
+}
+// 根据大类id查询小类
+export function getCategorySubList(data) {
+    return _request('http://localhost:3000/goods/getCategorySubList','post', data)
+}
+
+// 根据小类查询商品list
+export function getGoodsListByCategorySubID(data) {
+    return _request('http://localhost:3000/goods/getGoodsListByCategorySubID','post', data)
+}
+
 function _request (url, methods, data = undefined, params = {}){
     return new Promise((resolve)=>{
         axios({
